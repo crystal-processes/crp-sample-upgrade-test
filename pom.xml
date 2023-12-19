@@ -12,6 +12,7 @@
     <modules>
         <module>release-0.1.0</module>
         <module>release-0.2.0</module>
+        <module>release-0.2.1</module>
     </modules>
 
     <properties>

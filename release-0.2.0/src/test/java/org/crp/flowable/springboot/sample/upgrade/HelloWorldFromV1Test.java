@@ -8,11 +8,14 @@ import org.flowable.task.api.Task;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.EnabledIf;
 
 import static org.crp.flowable.assertions.CrpFlowableAssertions.assertThat;
 
 @SpringBootTest(classes = {AcmeApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TestHelloWorldFromV1 {
+@EnabledIf(reason="Run tests on generated data from previous versions.",
+        value = "#{environment.getActiveProfiles().length ==0 || environment.getActiveProfiles()[0]!='generateData'}")
+public class HelloWorldFromV1Test {
 
     @Autowired
     RuntimeService runtimeService;
