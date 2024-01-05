@@ -13,6 +13,9 @@
         <module>release-0.1.0</module>
         <module>release-0.2.0</module>
         <module>release-0.2.1</module>
+        <module>release-0.2.2</module>
+        <module>release-0.2.3</module>
+        <module>release-0.2.4</module>
     </modules>
 
     <properties>
