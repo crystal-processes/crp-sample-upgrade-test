@@ -37,18 +37,20 @@ GenerateDataTest {
 
     @BeforeEach
     void createDemoContract() {
-        var accountEntity = accountRepository.save(AccountEntity.builder()
-                .number("1234567")
-                .owner("jlong")
-                .build()
-        );
-        contractRepository.save(
-                ContractEntity.builder()
-                        .maxAmount(10000)
-                        .contractId("testContractId")
-                        .account(accountEntity).build()
-        );
-        contractRepository.flush();
+		if (accountRepository.count() == 0) {
+			var accountEntity = accountRepository.save(AccountEntity.builder()
+					.number("1234567")
+					.owner("jlong")
+					.build()
+			);
+			contractRepository.save(
+					ContractEntity.builder()
+							.maxAmount(10000)
+							.contractId("testContractId")
+							.account(accountEntity).build()
+			);
+			contractRepository.flush();
+		}
     }
 
     @Test
@@ -58,6 +60,8 @@ GenerateDataTest {
                 .processDefinitionKey("P030-processInsuranceEvent")
                 .name("Insurance event process instance from release 0.3.0") // the same as 0.2.5 version
                 .variable("contractId", "testContractId")
+                .variable("eventDescription", "Test event description")
+                .variable("amount", 1000)
                 .start()
         ).as("Generated data from version 0.3.0 for version 0.3.1. Continue in the process execution after complete task.")
                 .isRunning();
@@ -69,6 +73,8 @@ GenerateDataTest {
                 .processDefinitionKey("P030-processInsuranceEvent")
                 .name("Insurance event process instance from release 0.3.0 completed")
                 .variable("contractId", "testContractId")
+                .variable("eventDescription", "Test event description")
+                .variable("amount", 1000)
                 .start();
         Task assessEventTask = taskService.createTaskQuery().processInstanceId(processInsuranceEvent.getId()).singleResult();
         taskService.complete(assessEventTask.getId(), Map.of("amount", 5));
