@@ -6,3 +6,6 @@ set -e
 
 # JPA variables
 ./run_test-phase2.sh
+
+# Migration
+./run_test-phase3.sh
