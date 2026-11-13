@@ -13,10 +13,10 @@ echo '--- versioning with JPA variables                          ---'
  echo '--------------------------------------------------------------'
  echo '--- Testing upgrade from release-0.3.0 -> release-0.3.1    ---'
  echo '--- Migrate                                                ---'
-# test process execution on the version 0.3.0
-#  ./mvnw --projects release-0.3.1 clean test
+# test process execution on the version 0.3.1
+  ./mvnw --projects release-0.3.1 clean test
 
 # drop the test database
-#  docker exec -it "$(docker ps | grep docker-compose-db | awk '{print $1}')" psql -U flowable -d postgres -c "DROP DATABASE flowable"
-## shut down postgres database
-#  docker-compose -f commons/docker-compose/postgres-docker-compose.yml down
+  docker exec -it "$(docker ps | grep docker-compose-db | awk '{print $1}')" psql -U flowable -d postgres -c "DROP DATABASE flowable"
+# shut down postgres database
+  docker-compose -f commons/docker-compose/postgres-docker-compose.yml down
