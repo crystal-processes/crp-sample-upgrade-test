@@ -18,7 +18,7 @@
         <dependency>
             <groupId>io.github.crystal-processes</groupId>
             <artifactId>crp-flowable-springboot-sample</artifactId>
-            <version>0.2.2-SNAPSHOT</version>
+            <version>0.2.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
